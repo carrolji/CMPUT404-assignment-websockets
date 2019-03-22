@@ -57,3 +57,9 @@ Contributors
 
 * Mark Galloway
 * Abram Hindle
+
+RESOURCES
+=========
+https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications  
+
+https://github.com/abramhindle/WebSocketsExamples
