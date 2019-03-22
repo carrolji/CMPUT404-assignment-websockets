@@ -270,8 +270,6 @@ function wsSetup() {
     var url = "ws://"+host+"/subscribe";   
     socket = new WebSocket(url);
     socket.onopen = function() {
-        //send random stuff
-        socket.send("Here's some text that the server is urgently awaiting!"); 
     };
     socket.onerror = function(msg) {
         debug("WebSocket Error:" + msg.data);
@@ -280,11 +278,11 @@ function wsSetup() {
         try {
             debug("WebSocket Recv:" + msg.data);
             var message = JSON.parse(msg.data);
-            var entity;
-            for (entity in message) {
-                addEntity(entity, message[entity])
+            for (var key in message) {
+                world[key] = message[key];
+                drawNextFrame();
             }        
-            drawNextFrame();        
+            drawFrame();       
         } catch (e) {
             alert("socket on message: " + e);
         }
