@@ -44,17 +44,28 @@ debug("Test");
 
 world = {};
 
-//XXX: TODO Make this prettier!
 function drawCircle(context,entity) {
     with(context) {
-        beginPath();                
+        beginPath();              
         lineWidth = 3;
         var x = entity["x"];
         var y = entity["y"];
-        //moveTo(x,y);
+
         fillStyle = entity["colour"];
         strokeStyle = fillStyle;
-        arc(x, y, (entity["radius"])?entity["radius"]:50, 0, 2.0 * Math.PI, false);  
+        // star shape
+        moveTo(x, y);
+        lineTo(x+33, y+70);
+        lineTo(x+110, y+78.3);
+        lineTo(x+54, y+131);
+        lineTo(x+67, y+205);
+        lineTo(x, y+170);
+        lineTo(x-66.8, y+205);
+        lineTo(x-53, y+131);
+        lineTo(x-107, y+78);
+        lineTo(x-33, y+68);
+        lineTo(x, y);
+         
         stroke();                                
     }
 }
@@ -229,18 +240,21 @@ mouse = (function() {
 })();
 
 // Add the application specific mouse listeners!
-//XXX: TODO Make these prettier!
 mouse.mousedowners.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'blue'});
+    addEntityWithoutName({'x':x,'y':y,'colour':'#fff72b'});//yellow
 });
 
 mouse.mouseuppers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'red'});
+    addEntityWithoutName({'x':x,'y':y,'colour':'#fff72b'});//yellow
 });
 
 mouse.mousedraggers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'green',
-                          'radius':10});
+    var pos1 = Math.floor((Math.random() * 9) + 0);
+    var pos2 = Math.floor((Math.random() * 9) + 0);
+    var pos3 = Math.floor((Math.random() * 9) + 0);
+    var pos4 = Math.floor((Math.random() * 9) + 0);
+    let redTone = "#ff"+pos1+pos2+pos3+pos4;
+    addEntityWithoutName({'x':x,'y':y,'colour':redTone}); 
 });
 
 
